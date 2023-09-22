@@ -42,4 +42,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get all of the models that own users.
+     */
+    public function userable()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get all of the user's addresses.
+     */
+    public function addresses()
+    {
+        return $this->morphMany('App\Address', 'addressable');
+    }
+
+    /**
+     * Get the user's image.
+     */
+    public function images()
+    {
+        return $this->morphOne('App\Image', 'imageable');
+    }
 }
