@@ -18,5 +18,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            CategorySeeder::class,
+//            from this line below, is faker. comment it if not used.
+            MerchantSeeder::class,
+            OwnerSeeder::class,
+            OutletSeeder::class,
+            StaffSeeder::class,
+            ProductSeeder::class,
+            CustomerSeeder::class,
+            CartSeeder::class,
+            TransactionSeeder::class,
+        ]);
     }
 }

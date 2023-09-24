@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreign('product_variant_id')->references('id')->on('product_variants');
             $table->double('qty');
             $table->double('price');
-            $table->double('variant');
             $table->string('note');
             $table->softDeletes();
             $table->timestamps();

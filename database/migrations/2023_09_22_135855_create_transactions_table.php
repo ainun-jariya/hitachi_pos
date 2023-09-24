@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('outlet_id')->unsigned();
             $table->index('outlet_id');
             $table->foreign('outlet_id')->references('id')->on('outlets');
-            $table->morphs('transactable');
+            $table->nullableMorphs('transactable');
             $table->boolean('is_delivery')->default(false);
             $table->softDeletes();
             $table->timestamps();

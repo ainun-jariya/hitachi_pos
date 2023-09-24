@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('detail');
+            $table->text('detail');
             $table->string('lat');
             $table->string('long');
             $table->string('postal_code', 5);
-            $table->morphs('addressable');
+            $table->nullableMorphs('addressable');
             $table->softDeletes();
             $table->timestamps();
         });

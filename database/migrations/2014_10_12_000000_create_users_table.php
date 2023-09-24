@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('mobile_phone')->nullable();
             $table->string('phone')->nullable();
-            $table->morphs('userable');
+            $table->nullableMorphs('userable');
             $table->json('wishlist')->nullable();
             $table->softDeletes();
             $table->rememberToken();
