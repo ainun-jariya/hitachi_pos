@@ -20,6 +20,7 @@ class ProductVariantFactory extends Factory
             'name' => fake()->colorName,
             'sku' => fake()->postcode(),
             'price' => fake()->numberBetween(10000, 100000),
+            'original_price' => fake()->numberBetween(5000, 10000),
             'qty' => fake()->numberBetween(10, 100),
             'expired_at' => fake()->creditCardExpirationDate(),
         ];
