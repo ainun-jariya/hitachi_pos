@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Outlet extends Model
@@ -38,11 +40,11 @@ class Outlet extends Model
     ];
 
     /**
-     * Get all of the page's addresses.
+     * Get all the page's addresses.
      */
-    public function addresses()
+    public function address(): MorphOne
     {
-        return $this->morphMany('App\Address', 'addressable');
+        return $this->morphOne(Address::class, 'addressable');
     }
 
     /**
@@ -51,5 +53,13 @@ class Outlet extends Model
     public function owner(): BelongsTo
     {
         return $this->belongsTo(Owner::class);
+    }
+
+    /**
+     * Get the staff of the outlet
+     */
+    public function staff(): HasMany
+    {
+        return $this->hasMany(Staff::class);
     }
 }

@@ -46,7 +46,7 @@ class ProductVariant extends Model
      */
     public function images()
     {
-        return $this->morphOne('App\Image', 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Merchant extends Model
@@ -36,10 +38,20 @@ class Merchant extends Model
     ];
 
     /**
-     * Get the customer's user.
+     * Get the merchant's user.
      */
-    public function user()
+    public function user(): MorphOne
     {
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
+
+    /**
+     * Get the merchant's products.
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+
 }

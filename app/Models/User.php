@@ -4,6 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'mobile_phone',
+        'phone',
     ];
 
     /**
@@ -46,24 +52,32 @@ class User extends Authenticatable
     /**
      * Get all of the models that own users.
      */
-    public function userable()
+    public function userable(): MorphTo
     {
         return $this->morphTo();
     }
 
     /**
-     * Get all of the user's addresses.
+     * Get all the user's addresses.
      */
-    public function addresses()
+    public function addresses(): MorphMany
     {
-        return $this->morphMany('App\Address', 'addressable');
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     /**
      * Get the user's image.
      */
-    public function images()
+    public function image(): MorphOne
     {
-        return $this->morphOne('App\Image', 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * Get all the user's cart.
+     */
+    public function cart(): HasOne
+    {
+        return $this->hasOne(Cart::class);
     }
 }

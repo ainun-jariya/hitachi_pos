@@ -39,7 +39,7 @@ class Customer extends Model
      */
     public function user()
     {
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
 
     /**
@@ -47,6 +47,6 @@ class Customer extends Model
      */
     public function transactions()
     {
-        return $this->morphMany('App\Transaction', 'transactable');
+        return $this->morphMany(Transaction::class, 'transactable');
     }
 }
