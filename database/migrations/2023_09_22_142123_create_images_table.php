@@ -16,6 +16,7 @@ return new class extends Migration
             $table->nullableMorphs('imageable');
             $table->text('file');
             $table->string('size_type'); //thumbnail, original, ...
+            $table->softDeletes();
             $table->timestamps();
         });
     }

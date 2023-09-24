@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name')->default('-');
             $table->string('sku')->unique();
             $table->double('price');
+            $table->double('original_price');
             $table->double('qty');
             $table->date('expired_at');
             $table->softDeletes();
